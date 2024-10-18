@@ -1,0 +1,143 @@
+body {
+    display: grid;
+    grid-template-columns: 400px 5fr;
+    grid-template-rows: 1fr 3fr;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+    body {
+        grid-template-columns: 350px 5fr;
+    }
+}
+
+#logo {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav {
+    grid-column: 1;
+    grid-row: 2;
+    background-image: url(../../images/book.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    color: #1C0C4B;
+    font-size: large;
+}
+
+nav ul{
+    list-style-type: none;
+}
+li a{
+    text-decoration: none;
+}
+li li:hover{
+    transform: translateX(12px);
+}
+
+nav button {
+    align-self: center;
+    height: 10em;
+    width: 20em;
+    background-image: url(../../images/old-paper-texture.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 150%;
+    border: 3mm ridge rgb(116, 67, 12);
+    box-shadow: 6px 1px 10px rgba(29, 14, 1, 0.562);
+}
+nav button:hover{
+    transform: rotate(0.005turn);
+}
+nav button:active{
+    transform: rotate(0.005turn) translateX(5px);
+}
+
+nav button p {
+    font-family: "Source Serif 4", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: x-large;
+    text-transform: uppercase;
+    color: #301B03;
+    text-shadow: 0.5px 0.5px 2px #301b036c;
+    mix-blend-mode: color-burn;
+    align-self: center;
+}
+
+#topView {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mainView {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    transform: rotate(0.001turn);
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+  color: black;
+}
+
+th {
+  background-color: #505050;
+  color: #fff;
+}
+
+td[scope="dice"] {
+  background-color: #d6ecd4;
+}
+td[scope='text'] {
+    width: 500px;
+}
+
+td {
+  text-align: center;
+}
+
+tr:nth-of-type(even) {
+  background-color: #eee;
+}
+tr:nth-of-type(odd) {
+    background-color: #fff;
+  }
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+caption {
+  caption-side: bottom;
+  padding: 10px;
+}

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Random Dnd Tables{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/tables/tables.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<style> 
+    #mainView{
+        background-image: url("{{asset(lienPage)}}");
+    }
+</style>
+
+<div id="logo"><img src="{{asset('images/Dice.png')}}" alt="illustration de d20"></div>
+ <nav> 
+    <ul>
+        <li> Tables Génériques :
+            <ul>
+                <li><a href="">table 1</a></li>
+                <li><a href="">table 2</a></li>
+                <li><a href="">table 3</a></li>
+            </ul>
+        </li>
+        <br>
+        <li> Mes Tables :
+            <ul>
+                <li><a href="">table 1</a></li>
+                <li><a href="">table 2</a></li>
+                <li><a href="">table 3</a></li>
+            </ul>
+        </li>
+    </ul>
+    <button><p>nouvelle <br> table aléatoire</p></button>
+</nav>
+<section id="topView">
+    <div>
+        <button>roll the dice</button>
+        <input type="text" placeholder="input a result">
+    </div>
+    <img src="{{asset('images/Dice.png')}}" alt="illustration de d20">
+</section>
+<section id="mainView">
+    <table>
+        <tr>
+            <th>Résultat</th>
+            <th>Titre de la table</th>
+        </tr>
+        <tr>
+            <td scope="dice">1</td>
+            <td scope="text">lorem ipsum</td>
+        </tr>
+        <tr>
+            <td scope="dice">2</td>
+            <td scope="text">lorem ipsum</td>
+        </tr>
+        <tr>
+            <td scope="dice">3</td>
+            <td scope="text">lorem ipsum</td>
+        </tr>
+        <tr>
+            <td scope="dice">4</td>
+            <td scope="text">lorem ipsum</td>
+        </tr>
+        <tr>
+            <td scope="dice">5</td>
+            <td scope="text">lorem ipsum</td>
+        </tr>
+        <tr>
+            <td scope="dice">6</td>
+            <td scope="text">lorem ipsum</td>
+        </tr>
+    </table>
+</section>
+
+{% endblock %}
