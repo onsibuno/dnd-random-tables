@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/register/register.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<style> 
+    section{
+        background-image: url("{{asset(lienPage)}}");
+    }
+</style>
+
+	<div id="logo"><img src="{{asset('images/Dice.png')}}" alt="illustration de d20"></div>
+
+    
+	<section>
+        <h2>Inscription</h2>
+        
+		{{ form_errors(registrationForm) }}
+
+		{{ form_start(registrationForm) }}
+        <div>
+            {{ form_row(registrationForm.username) }}
+        </div>
+        <div>
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+        </div>
+        <div id="agreeTerms">
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
+
+		<button type="submit" class="btn">Register</button>
+		{{ form_end(registrationForm) }}
+	</section>
+{% endblock %}

@@ -1,0 +1,72 @@
+body {
+    display: grid;
+    grid-template-columns: 400px 5fr;
+    grid-template-rows: 1fr 3fr;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    overflow: hidden;
+}
+
+#logo {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+section {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 22;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Source Serif 4", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+h2 {
+    font-weight: 800;
+}
+
+section div {
+    display: flex;
+    flex-direction: column;
+}
+
+#agreeTerms div {
+    display: flex;
+    flex-direction: row;
+}
+
+[type="text"],
+[type="password"] {
+    height: 5vh;
+    width: 20vw;
+    border-radius: 50px;
+    border: 3px solid rgb(150, 75, 45);
+    background-color: rgb(211, 175, 108);
+    background-image: url(../../images/old-paper-texture.jpg);
+    background-repeat: no-repeat;
+    background-size: 110%;
+    margin-bottom: 2vh;
+    text-align: center;
+    font-size: large;
+    color: #1C0C4B;
+    box-shadow: 2px 2px 6px rgb(48, 24, 14), inset 2px 2px 2px rgba(48, 24, 14, 0.459);
+}
+
+[type="text"] {
+    background-position: 50% 20%
+}
+
+[type="password"] {
+    background-position: 50% 80%}
