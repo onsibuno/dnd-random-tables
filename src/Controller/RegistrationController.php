@@ -37,7 +37,7 @@ class RegistrationController extends AbstractController
         }
 
         $inclinaison = rand(-0.002, 0.002);
-        $numeroPage = rand(1, 4);
+        $numeroPage = rand(1, 3);
         $lienPage = 'images/pages' . $numeroPage . '.png';
 
         return $this->render('registration/register.html.twig', [

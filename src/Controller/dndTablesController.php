@@ -13,7 +13,7 @@ class dndTablesController extends AbstractController
     {
 
         $inclinaison = rand(-0.002, 0.002);
-        $numeroPage = rand(1, 4);
+        $numeroPage = rand(1, 3);
         $lienPage = 'images/pages' . $numeroPage . '.png';
         
         return $this->render('dnd_tables/index.html.twig', [

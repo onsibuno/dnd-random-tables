@@ -47,26 +47,80 @@ section div {
     flex-direction: row;
 }
 
+path {
+    background-color: white;
+    fill: black;
+}
+
+#parent {
+    width: 250px;
+    overflow: visible;
+    place-self: center;
+}
+
+.enfant {
+    position: relative;
+    top: 50;
+    left: 0;
+}
+
+svg {
+    width: 250px;
+    /* z-index: -1; */
+    overflow: visible;
+}
+
+label{
+    transform: translate(0px, 50px);
+    color: black;
+
+}
+
 [type="text"],
 [type="password"] {
-    height: 5vh;
-    width: 20vw;
-    border-radius: 50px;
-    border: 3px solid rgb(150, 75, 45);
-    background-color: rgb(211, 175, 108);
-    background-image: url(../../images/old-paper-texture.jpg);
-    background-repeat: no-repeat;
-    background-size: 110%;
-    margin-bottom: 2vh;
+    place-self: center;
+    height: 50px;
+    width: 225px;
+    display: inline;
+    transform: translate(0px, 60px);
+    z-index: 3;
+    background: none;
+    border: none;
     text-align: center;
-    font-size: large;
-    color: #1C0C4B;
-    box-shadow: 2px 2px 6px rgb(48, 24, 14), inset 2px 2px 2px rgba(48, 24, 14, 0.459);
+    font-size: 2em;
 }
 
-[type="text"] {
-    background-position: 50% 20%
+[type="text"]:focus,
+[type="password"]:focus {
+    outline: none;
+    color: brown;
 }
 
-[type="password"] {
-    background-position: 50% 80%}
+.enfant:has([type="text"]:focus)+svg .line,
+.enfant:has([type="password"]:focus)+svg .line,
+.enfant:has([type="text"]:focus) label,
+.enfant:has([type="password"]:focus) label {
+    fill: brown;
+    color: brown;
+}
+
+.fill {
+    fill: beige;
+    opacity: 0.5;
+}
+
+.line {
+    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.514));
+}
+
+label + ul{
+    display: contents;
+}
+
+label + ul li{
+    display: block;
+    color: red;
+    overflow: visible;
+    white-space: nowrap;
+    transform: translateY(47px);
+}
