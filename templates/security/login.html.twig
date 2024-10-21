@@ -12,6 +12,9 @@
 			background-image: url("{{asset(lienPage)}}");
 		}
 	</style>
+	<h2>Connexion</h2>
+	<div id="logo"><img src="{{asset('images/Dice.png')}}" alt="illustration de d20"></div>
+
 	<section>
 		<form method="post">
 			{% if error %}
@@ -26,7 +29,6 @@
 				</div>
 			{% endif %}
 
-			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 			<div class="parent">
 				<div class="enfant">
 					<div class="enfant">
@@ -53,7 +55,7 @@
 
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-			<div class="checkbox mb-3">
+			<div id="rememberMe" class="checkbox mb-3">
 				<label>
 					<input type="checkbox" name="_remember_me">
 					Remember me
@@ -63,6 +65,7 @@
 			<button class="btn btn-lg btn-primary" type="submit">
 				Sign in
 			</button>
+			<p>click <a href="register" class="link">here</a> if you need to make an account</p>
 		</form>
 	</section>
 {% endblock %}
