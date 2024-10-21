@@ -16,6 +16,13 @@
 
 <div id="logo"><img src="{{asset('images/Dice.png')}}" alt="illustration de d20"></div>
  <nav> 
+    {% if app.user %}
+		<div class="mb-3">
+			You are logged in as
+			{{ app.user.userIdentifier }}, <br>
+			<a href="{{ path('app_logout') }}">Logout</a>
+		</div>
+	{% endif %}
     <ul>
         <li> Tables Génériques :
             <ul>

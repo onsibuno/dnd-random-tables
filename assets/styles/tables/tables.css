@@ -36,6 +36,13 @@ nav {
     color: #1C0C4B;
     font-size: large;
 }
+nav div{
+  padding: 0.8em;
+  font-style: italic;
+  color: rgb(26, 12, 12);
+  opacity: 0.93;
+  /* mix-blend-mode: hard-light; */
+}
 
 nav ul{
     list-style-type: none;
@@ -93,29 +100,55 @@ nav button p {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-size: 65%;
+    background-size: 89%;
+    /* background-size: 100%; */
     background-repeat: no-repeat;
-    background-position: center bottom;
+    background-position: center top;
     transform: rotate(0.001turn);
 }
 
+table{
+
+  border-collapse: collapse;
+  width: 60%;
+}
+
+tbody{
+  /* mix-blend-mode: darken; */
+  mix-blend-mode: multiply;
+  /* filter: blur(0.1px); */
+  border: 2px solid transparent;
+}
+
+tr{
+  border: 2px solid transparent;
+
+}
 th,
 td {
-  border: 1px solid rgb(160 160 160);
+  /* border: 2px dotted rgb(19, 19, 19); */
   padding: 8px 10px;
   color: black;
+  font-family: "Jacques Francois", serif;
+  font-weight: 500;
+  font-size: 1.3em;
 }
 
 th {
-  background-color: #505050;
-  color: #fff;
+  /* background-color: #deb016; */
+  background-color: transparent;
+  /* font-weight: 600; */
+  font-family: "Source Serif 4", serif;
+  color: #000;
 }
 
 td[scope="dice"] {
-  background-color: #d6ecd4;
+  background-color: #f0d0672c;
+  width: 50px;
+  max-width: 50px;
 }
 td[scope='text'] {
-    width: 500px;
+    width: auto;
 }
 
 td {
@@ -123,10 +156,10 @@ td {
 }
 
 tr:nth-of-type(even) {
-  background-color: #eee;
+  background-color: #f7e6ad;
 }
 tr:nth-of-type(odd) {
-    background-color: #fff;
+    background-color: transparent;
   }
 
 table {
@@ -140,4 +173,14 @@ table {
 caption {
   caption-side: bottom;
   padding: 10px;
+}
+
+tr:hover:has(td){
+  /* border: inset 2px solid red; */
+  /* font-style: italic; */
+  /* transform: translateX(15px); */
+  -webkit-box-shadow:inset 0px 0px 0px 2px #f00;
+  -moz-box-shadow:inset 0px 0px 0px 2px #f00;
+  box-shadow:inset 0px 0px 0px 2px #f00;
+  /* z-index: 10; */
 }
