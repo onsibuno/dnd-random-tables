@@ -88,20 +88,23 @@ label{
     border: none;
     text-align: center;
     font-size: 2em;
+    font-family: "Jacques Francois", serif;
+
 }
 
 [type="text"]:focus,
 [type="password"]:focus {
     outline: none;
-    color: brown;
+    color: rgb(66, 33, 33);
 }
 
 .enfant:has([type="text"]:focus)+svg .line,
 .enfant:has([type="password"]:focus)+svg .line,
 .enfant:has([type="text"]:focus) label,
 .enfant:has([type="password"]:focus) label {
-    fill: brown;
-    color: brown;
+    fill: rgb(66, 33, 33);
+    color: rgb(66, 33, 33);
+    
 }
 
 .fill {
@@ -123,4 +126,57 @@ label + ul li{
     overflow: visible;
     white-space: nowrap;
     transform: translateY(47px);
+}
+
+#agreeTerms div{
+    display: flex;
+    flex-direction: row-reverse;
+    transform: none;
+    margin-top: 0.7em;
+    align-items: center;
+    justify-content: center;
+}
+
+#agreeTerms div label{
+    transform: none;
+    text-transform: capitalize;
+}
+
+input[type="checkbox"] {
+    accent-color: rgb(255, 0, 0);
+    mix-blend-mode: none;
+    border: none;
+    outline: none;
+}
+
+input[type="checkbox"]:checked {
+    accent-color: rgb(39, 23, 23);
+    /* mix-blend-mode: color-burn; */
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+button {
+    place-self: center;
+    margin-top: 1.7em;
+    height: 3.5em;
+    width: 8em;
+    /* border: 3px solid rgb(39, 23, 23); */
+    border: 5px ridge rgb(116, 67, 12);
+    font-family: "Jacques Francois", serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    box-shadow: 0px 2px 5px rgb(39, 23, 23);
+    background-image: url(../../images/old-paper-texture.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 150%;
+}
+
+button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 6px rgb(39, 23, 23);
+
 }
