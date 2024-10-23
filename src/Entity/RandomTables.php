@@ -29,7 +29,7 @@ class RandomTables
     private array $Content = [];
 
     #[ORM\ManyToOne(inversedBy: 'randomTables')]
-    private ?user $DungeonMaster = null;
+    private ?User $DungeonMaster = null;
 
     public function getId(): ?int
     {
@@ -96,12 +96,12 @@ class RandomTables
         return $this;
     }
 
-    public function getDungeonMaster(): ?user
+    public function getDungeonMaster(): ?User
     {
         return $this->DungeonMaster;
     }
 
-    public function setDungeonMaster(?user $DungeonMaster): static
+    public function setDungeonMaster(?User $DungeonMaster): static
     {
         $this->DungeonMaster = $DungeonMaster;
 
