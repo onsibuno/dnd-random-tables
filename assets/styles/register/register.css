@@ -109,15 +109,15 @@ label {
 [type="text"]:focus,
 [type="password"]:focus {
     outline: none;
-    color: rgb(66, 33, 33);
+    color: rgb(110, 70, 54);
 }
 
 .enfant:has([type="text"]:focus)+svg .line,
 .enfant:has([type="password"]:focus)+svg .line,
 .enfant:has([type="text"]:focus) label,
 .enfant:has([type="password"]:focus) label {
-    fill: rgb(66, 33, 33);
-    color: rgb(66, 33, 33);
+    fill: rgb(110, 70, 54);
+    color: rgb(110, 70, 54);
 
 }
 

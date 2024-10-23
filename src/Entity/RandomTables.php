@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RandomTablesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RandomTablesRepository::class)]
@@ -30,6 +32,11 @@ class RandomTables
 
     #[ORM\ManyToOne(inversedBy: 'randomTables')]
     private ?User $DungeonMaster = null;
+
+    public function __construct()
+    {
+        $this->Content = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {

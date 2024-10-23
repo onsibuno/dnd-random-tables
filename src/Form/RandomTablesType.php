@@ -8,9 +8,12 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RandomTablesType extends AbstractType
@@ -54,8 +57,21 @@ class RandomTablesType extends AbstractType
                     ],
                 ],
             ])
-            ->add('Content')
-        ;
+            ->add('Content', CollectionType::class, [
+                'entry_type' => TextType::class,
+                'allow_add' => true,
+            ]);
+
+            /* $builder->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                 function(FormEvent $event): void {
+                    $form = $event->getForm();
+
+                    $data = $event->getData();
+
+                    $content = $data->getContent();
+
+                 });*/
     }
 
     public function configureOptions(OptionsResolver $resolver): void
