@@ -63,6 +63,7 @@ nav button {
     background-position: center;
     background-size: 150%;
     border: 3mm ridge rgb(116, 67, 12);
+    /* border-image: url(../../images/Wood-Texture.jpg) 300; */
     box-shadow: 6px 1px 10px rgba(29, 14, 1, 0.562);
 }
 nav button:hover{

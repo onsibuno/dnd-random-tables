@@ -12,7 +12,7 @@ class dndTablesController extends AbstractController
     public function index(): Response
     {
 
-        $inclinaison = rand(-0.002, 0.002);
+        // $inclinaison = rand(-0.002, 0.002);
         $numeroPage = rand(1, 3);
         $lienPage = 'images/pages' . $numeroPage . '.png';
         
@@ -21,7 +21,7 @@ class dndTablesController extends AbstractController
             // 'lienBackgroundPage' => $lienPage,
             // 'styleTilt' => $inclinaison,
             'lienPage' => $lienPage,
-            'inclinaison' => $inclinaison
+            // 'inclinaison' => $inclinaison
         ]);
     }
 }

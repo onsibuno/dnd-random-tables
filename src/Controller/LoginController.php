@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
+    #[Route(path: '/', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
@@ -21,7 +21,7 @@ class LoginController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        $inclinaison = rand(-0.002, 0.002);
+        // $inclinaison = rand(-0.002, 0.002);
         $numeroPage = rand(1, 3);
         $lienPage = 'images/pages' . $numeroPage . '.png';
 
@@ -29,7 +29,7 @@ class LoginController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error,
             'lienPage' => $lienPage,
-            'inclinaison' => $inclinaison
+            // 'inclinaison' => $inclinaison
         ]);
     }
 
