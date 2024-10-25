@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RandomTables index{% endblock %}
+
+{% block body %}
+    <h1>RandomTables index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TableName</th>
+                <th>Dice</th>
+                <th>TableType</th>
+                <th>Theme</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for random_table in random_tables %}
+            <tr>
+                <td>{{ random_table.id }}</td>
+                <td>{{ random_table.TableName }}</td>
+                <td>{{ random_table.Dice }}</td>
+                <td>{{ random_table.TableType }}</td>
+                <td>{{ random_table.Theme }}</td>
+                <td>{{ random_table.Content ? random_table.Content|json_encode : '' }}</td>
+                <td>
+                    <a href="{{ path('app_random_tables_crud_show', {'id': random_table.id}) }}">show</a>
+                    <a href="{{ path('app_random_tables_crud_edit', {'id': random_table.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_random_tables_crud_new') }}">Create new</a>
+{% endblock %}

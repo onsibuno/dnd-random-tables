@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Content;
 use App\Entity\RandomTables;
+use App\Form\NewTableType;
 use App\Form\RandomTablesType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -23,14 +26,30 @@ class NewTableController extends AbstractController
     // }
 
     #[Route('/new/table', name: 'app_new_table')]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, Request $request, EntityManagerInterface $em): Response
     {
         $table = new RandomTables();
+
+        // // $content = new Content();
+        // // $content->setCase("CASE 01");
+        // // $content->setCategorie("CAT 01");
+        // // $content->setChoix("CHOIX 01");
+        // // $content->setNombre("nb 01");
+
+        // $table->getContents()->add($content);
         $user = $userRepository->findOneBy(['username' => $this->getUser()->getUserIdentifier()]);
-        $form = $this->createForm(RandomTablesType::class, $table);
         
+        // $form = $this->createForm(RandomTablesType::class, $table);
+
+
+        $form = $this->createForm(NewTableType::class, $table);
+        $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $table->setDungeonMaster($user);
+            $em->persist($table);
+            $em->flush();
+            $this->addFlash('success', 'La recette a bien été créée');
+            // return $this->redirectToRoute('admin.recipe.index');
         }
 
         return $this->render('new_table/index.html.twig', [

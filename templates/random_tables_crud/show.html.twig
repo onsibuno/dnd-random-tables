@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RandomTables{% endblock %}
+
+{% block body %}
+    <h1>RandomTables</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ random_table.id }}</td>
+            </tr>
+            <tr>
+                <th>TableName</th>
+                <td>{{ random_table.TableName }}</td>
+            </tr>
+            <tr>
+                <th>Dice</th>
+                <td>{{ random_table.Dice }}</td>
+            </tr>
+            <tr>
+                <th>TableType</th>
+                <td>{{ random_table.TableType }}</td>
+            </tr>
+            <tr>
+                <th>Theme</th>
+                <td>{{ random_table.Theme }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ random_table.Content ? random_table.Content|json_encode : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_random_tables_crud_index') }}">back to list</a>
+
+    <a href="{{ path('app_random_tables_crud_edit', {'id': random_table.id}) }}">edit</a>
+
+    {{ include('random_tables_crud/_delete_form.html.twig') }}
+{% endblock %}
