@@ -21,7 +21,7 @@ class RandomTablesType extends AbstractType
             ->add('Content')
             ->add('DungeonMaster', EntityType::class, [
                 'class' => user::class,
-'choice_label' => 'id',
+                'choice_label' => 'id',
             ])
         ;
     }

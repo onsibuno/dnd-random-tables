@@ -1,6 +1,7 @@
 <?php
 namespace App\Entity;
 use App\Repository\RandomTablesRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: RandomTablesRepository::class)]
 class RandomTables
@@ -17,10 +18,11 @@ class RandomTables
     private ?string $TableType = null;
     #[ORM\Column(length: 50)]
     private ?string $Theme = null;
-    #[ORM\Column]
-    private array $Content = [];
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $Content = null;
     #[ORM\ManyToOne(inversedBy: 'randomTables')]
     private ?User $DungeonMaster = null;
+    public $table_type = "";
 
     public function getId(): ?int
     {
@@ -35,12 +37,23 @@ class RandomTables
         $this->TableName = $TableName;
         return $this;
     }
+    public function getTableType(): ?string
+    {
+        return $this->TableType;
+    }
+    public function setTableType(string $TableType): static
+    {
+        $this->TableType = $TableType;
+        $this->table_type = $TableType;
+        return $this;
+    }
     public function getDice(): ?string
     {
         return $this->Dice;
     }
+    
     public function setDice(string $Dice): static
-    {
+    {   
         $this->Dice = $Dice;
         $value = 0;
         if($this->Dice == 'd10') {
@@ -65,15 +78,7 @@ class RandomTables
         $this->updateContentInput($value);
         return $this;
     }
-    public function getTableType(): ?string
-    {
-        return $this->TableType;
-    }
-    public function setTableType(string $TableType): static
-    {
-        $this->TableType = $TableType;
-        return $this;
-    }
+    
     public function getTheme(): ?string
     {
         return $this->Theme;
@@ -88,14 +93,10 @@ class RandomTables
     //     return $this->Content;
     // }
     public function getContent(): string
-    {
-        $data = "";
-        foreach($this->Content as $d) {
-            $data .= $d;
-        }
-        return $data;
+    {     
+        return $this->Content;
     }
-    public function setContent(array $Content): static
+    public function setContent(string $Content): static
     {
         $this->Content = $Content;
         return $this;
@@ -111,10 +112,15 @@ class RandomTables
     }
 
     public function updateContentInput(string $value) {
+        $contentIput = '{ "table" : [';
         for ($i = 1; $i <= $value; $i++) {
-            $data = "{'case': 'CASE','categorie': 'CAT$i','choix': " . $i%2 .",'nombre': '$i'}";
+            $contentIput = $contentIput . ($i != 1 ? ", " : "");
+            $data = '{"case":'.  $i .',"categorie": "plaintext","choix": "lorem ipsum dolor si amet","nombre": '.$i.'}';
             // json_encode($data);
-            array_push($this->Content, $data);
+            $contentIput = $contentIput . $data;
         }
+        $contentIput = $contentIput . "] }";
+
+        $this->Content = $contentIput;
     }
 }

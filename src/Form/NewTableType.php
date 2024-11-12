@@ -60,22 +60,6 @@ class NewTableType extends AbstractType
                     ],
                 ],
             ])
-            // ->add('Content', HiddenType::class)
-            // ->add('Content', ChoiceType::class, [
-            //     'choices' => [
-            //         '10-sided Dice' => [
-            //             '$champ[]' => 'd10',
-            //             '2d10 for 25 lines' => '2d10/4',
-            //             '2d10 for 50 lines' => '2d10/2',
-            //             '2d10 for 100 lines' => '2d10',
-            //         ],
-            //         '20-sided Dice' => 'd20',
-            //         '12-sided Dice' => 'd12',
-            //         '8-sided Dice' => 'd8',
-            //         '6-sided Dice' => 'd6',
-            //         '4-sided Dice' => 'd4',
-            //     ]
-            // ])
             ->add('save', SubmitType::class, [
                 'label' => 'Créer la table'
             ])

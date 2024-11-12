@@ -26,17 +26,19 @@
     <ul>
         <li> Tables Génériques :
             <ul>
-                <li><a href="">table 1</a></li>
-                <li><a href="">table 2</a></li>
-                <li><a href="">table 3</a></li>
+                {% for random_table in random_tables %}
+                <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
+                {% endfor %}
             </ul>
         </li>
         <br>
         <li> Mes Tables :
             <ul>
-                <li><a href="">table 1</a></li>
-                <li><a href="">table 2</a></li>
-                <li><a href="">table 3</a></li>
+                {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
+                <li><a href="">{{ random_table.TableName }}</a></li>
+                {% else %}
+                    <li>aucune table</li>
+                {% endfor %}
             </ul>
         </li>
     </ul>
@@ -49,37 +51,22 @@
     </div>
     <img src="{{asset('images/Dice.png')}}" alt="illustration de d20">
 </section>
-<section id="mainView">
-    <table>
-        <tr>
-            <th>Résultat</th>
-            <th>Titre de la table</th>
-        </tr>
-        <tr>
-            <td scope="dice">1</td>
-            <td scope="text">lorem ipsum</td>
-        </tr>
-        <tr>
-            <td scope="dice">2</td>
-            <td scope="text">lorem ipsum</td>
-        </tr>
-        <tr>
-            <td scope="dice">3</td>
-            <td scope="text">lorem ipsum</td>
-        </tr>
-        <tr>
-            <td scope="dice">4</td>
-            <td scope="text">lorem ipsum</td>
-        </tr>
-        <tr>
-            <td scope="dice">5</td>
-            <td scope="text">lorem ipsum</td>
-        </tr>
-        <tr>
-            <td scope="dice">6</td>
-            <td scope="text">lorem ipsum</td>
-        </tr>
-    </table>
-</section>
+
+    <section id="mainView">
+        <table>
+            <tr>
+                <th>Dice</th>
+                <th>Table Name</th>
+            </tr>
+            {% for i in 0..6 %}
+                <tr>
+                    <td scope="dice">{{i}}</td>
+                    <td scope="text">lorem ipsum</td>
+                </tr> 
+            {% endfor %}
+        </table>
+    </section> 
+
+
 
 {% endblock %}

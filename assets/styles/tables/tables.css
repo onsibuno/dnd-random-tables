@@ -99,6 +99,7 @@ nav button p {
     grid-column: 2;
     grid-row: 2;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-size: 89%;
