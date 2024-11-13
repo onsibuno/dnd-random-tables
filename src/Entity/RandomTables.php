@@ -88,10 +88,6 @@ class RandomTables
         $this->Theme = $Theme;
         return $this;
     }
-    // public function getContent(): array
-    // {
-    //     return $this->Content;
-    // }
     public function getContent(): string
     {     
         return $this->Content;

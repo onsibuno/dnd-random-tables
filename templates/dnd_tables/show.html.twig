@@ -27,7 +27,7 @@
         <ul>
             <li> Tables Génériques :
                 <ul>
-                    {% for random_table in random_tables %}
+                    {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == null) %}
                     <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
                     {% endfor %}
                 </ul>
@@ -36,7 +36,7 @@
             <li> Mes Tables :
                 <ul>
                     {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
-                    <li><a href="">{{ random_table.TableName }}</a></li>
+                    <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
                     {% else %}
                         <li>aucune table</li>
                     {% endfor %}
@@ -62,10 +62,10 @@
                     <th>{{chosen_table.TableName}}</th>
             </tr>
             {# <pre>{{ dump(parsedJSON) }}</pre> #}
-            {% for ligne in parsedJSON[0].table %}
+            {% for ligne in parsedJSON.table %}
                 <tr>
                     <td scope="dice">{{ ligne.case }}</td> 
-                    {% if ligne.categorie == "CAT5" %}
+                    {% if ligne.categorie == "databse" %}
                         <td scope="text"><a href="lien api">{{ ligne.choix }}</a></td> 
                     {% else %}
                         <td scope="text">
@@ -74,7 +74,6 @@
                             {% endif %}
                              {{ ligne.choix }}</td> 
                     {% endif %}
-                    
                 </tr> 
             {% endfor %}
         </table>

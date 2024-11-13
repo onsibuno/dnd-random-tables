@@ -45,6 +45,7 @@ section {
     background-repeat: no-repeat;
     background-position: center top;
 }
+
 @media (min-width: 1400px){
     section{
         background-size: 60%;

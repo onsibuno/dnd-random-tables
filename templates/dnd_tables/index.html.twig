@@ -26,7 +26,7 @@
     <ul>
         <li> Tables Génériques :
             <ul>
-                {% for random_table in random_tables %}
+                {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == null) %}
                 <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
                 {% endfor %}
             </ul>
@@ -35,7 +35,7 @@
         <li> Mes Tables :
             <ul>
                 {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
-                <li><a href="">{{ random_table.TableName }}</a></li>
+                <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}"symfo>{{ random_table.TableName }}</a></li>
                 {% else %}
                     <li>aucune table</li>
                 {% endfor %}

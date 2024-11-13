@@ -31,17 +31,7 @@ class TwigJsonDecodeExtension extends AbstractExtension {
       ];
     }
   
-    /**
-     * The actual implementation of the filter.
-     */
-    // public function jsonDecode($context): array {
-    //   // $trimmed = trim($context, "\"");
-    //   // return json_decode($context, TRUE);
-    //   return json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $context), true );
-
-    // }
     public function jsonDecode($context): mixed {
-      // $trimmed = trim($context, "\"");
       return json_decode($context);
 
     }
