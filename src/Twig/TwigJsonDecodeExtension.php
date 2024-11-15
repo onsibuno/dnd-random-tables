@@ -20,20 +20,17 @@ use Twig\TwigFilter;
 /**
  * Class for Json to array.
  */
+
 class TwigJsonDecodeExtension extends AbstractExtension {
 
-    /**
-     * Get Filters function.
-     */
-    public function getFilters(): array {
-      return [
-        new TwigFilter('decode_json', [$this, 'jsonDecode']),
-      ];
-    }
-  
-    public function jsonDecode($context): mixed {
-      return json_decode($context);
-
-    }
+  public function getFilters(): array {
+    return [
+      new TwigFilter('decode_json', [$this, 'jsonDecode']),
+    ];
   }
+  
+  public function jsonDecode($context): mixed {
+    return json_decode($context);
+  }
+}
   

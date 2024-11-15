@@ -21,7 +21,6 @@ class LoginController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        // $inclinaison = rand(-0.002, 0.002);
         $numeroPage = rand(1, 3);
         $lienPage = 'images/pages' . $numeroPage . '.png';
 
@@ -29,7 +28,6 @@ class LoginController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error,
             'lienPage' => $lienPage,
-            // 'inclinaison' => $inclinaison
         ]);
     }
 

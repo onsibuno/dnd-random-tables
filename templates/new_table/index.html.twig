@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello NewTableController!
-{% endblock %}
+{% block title %}New Table{% endblock %}
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('styles/newtable/newtable.css') }}">
 {% endblock %}
@@ -10,9 +9,13 @@
 
 	<section>
 		<div class="example-wrapper">
-
+			
 			{{form(form)}}
 			
 		</div>
+		<a href="{{ path('app_dnd_tables') }}">go back to the menu</a>
+		<img id="dragon" src="{{asset('images/dnd_greendragon.png')}}" alt="Artwork of a green Dragon from Dungeons and Dragons second edition Monstrous Manual page 67, drawn by Mark Nelson">
+		<img id="drow" src="{{asset('images/dnd_drow.png')}}" alt="Artwork of a Drow Elf from Dungeons and Dragons second edition Monstrous Manual page 112, drawn by Jeff Butler">
 	</section>
+	<img id="dagger" src="{{asset('images/dagger.png')}}" alt="">
 {% endblock %}

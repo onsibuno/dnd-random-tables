@@ -1,82 +1,115 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Random Dnd Tables{% endblock %}
+{% block title %}Random Dnd Tables
+{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('styles/tables/tables.css') }}">
+	<link rel="stylesheet" href="{{ asset('styles/tables/tables.css') }}">
 {% endblock %}
 
 {% block body %}
 
-    <style> 
-        #mainView{
-            background-image: url("{{asset(lienPage)}}");
-        }
-    </style>
+	{# 
+	    <style> 
+	        #mainView{
+	            background-image: url("{{asset(lienPage)}}");
+	        }
+	    </style> 
+	#}
 
-    <div id="logo"><img src="{{asset('images/Dice.png')}}" alt="illustration de d20"></div>
+	<div id="logo"><img src="{{asset('images/Dice.png')}}" alt="illustration de d20"></div>
 
-    <nav> 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as
-                {{ app.user.userIdentifier }}, <br>
-                <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-        <ul>
-            <li> Tables Génériques :
-                <ul>
-                    {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == null) %}
-                    <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
-                    {% endfor %}
-                </ul>
-            </li>
-            <br>
-            <li> Mes Tables :
-                <ul>
-                    {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
-                    <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
-                    {% else %}
-                        <li>aucune table</li>
-                    {% endfor %}
-                </ul>
-            </li>
-        </ul>
-        <button type="button" onclick="location.href = 'new/table'"><p>nouvelle <br> table aléatoire</p></button>
-    </nav>
-    <section id="topView">
-        <div>
-            <button>roll the dice</button>
-            <input type="text" placeholder="input a result">
-        </div>
-        <img src="{{asset('images/Dice.png')}}" alt="illustration de d20">
-    </section>
+	<nav>
+		{% if app.user %}
+			<div class="mb-3">
+				You are logged in as
+				{{ app.user.userIdentifier }},
+				<br>
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+		{% endif %}
+		<ul>
+			<li>
+				General Tables :
+				<ul>
+					{% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == null) %}
+						<li>
+							<a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+			<br>
+			<li>
+				My Tables :
+				<ul>
+					{% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
+						<li>
+							<a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a>
+						</li>
+					{% else %}
+						<li>no table</li>
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+		<button type="button" onclick="location.href = 'new/table'">
+			<p>New
+				<br>
+				Random Table</p>
+		</button>
+	</nav>
+	<section id="topView">
+		<div>
+			<button>roll the dice</button>
+			<input type="text" placeholder="input a result">
+		</div>
+		<img src="{{asset('images/Dice.png')}}" alt="illustration de d20">
+	</section>
 
-    <section id="mainView">
-        {% set parsedJSON = chosen_table.Content | decode_json %}
+	<section id="mainView">
+		{% set parsedJSON = chosen_table.Content | decode_json %}
+		{% if chosen_table.theme == "grassland" %}
+			<img id="elf" src="{{asset('images/dnd_elf.png')}}" alt="">
+			<img id="peryton" src="{{asset('images/dnd_peryton.png')}}" alt="">
+		{% elseif chosen_table.theme == "desert" %}
+			<img id="banelar" src="{{asset('images/dnd_banelar_naga.png')}}" alt="">
+			<img id="jackalwere" src="{{asset('images/dnd_jackalwere.png')}}" alt="">
+		{% elseif chosen_table.theme == "mountain" %}
+			<img id="" src="" alt="">
+			<img id="" src="" alt="">
+		{% elseif chosen_table.theme == "astral" %}
+			<img id="intellect" src="{{asset('images/dnd_intellect_devourer.png')}}" alt="">
+			<img id="displacer" src="{{asset('images/dnd_displacer_beast.png')}}" alt="">
+		{% elseif chosen_table.theme == "city" %}
+			<img id="" src="" alt="">
+			<img id="" src="" alt="">
+		{% endif %}
 
-        <table class="{{chosen_table.Theme}}">
-            <tr>
-                    <th>{{chosen_table.Dice}}</th> 
-                    <th>{{chosen_table.TableName}}</th>
-            </tr>
-            {# <pre>{{ dump(parsedJSON) }}</pre> #}
-            {% for ligne in parsedJSON.table %}
-                <tr>
-                    <td scope="dice">{{ ligne.case }}</td> 
-                    {% if ligne.categorie == "databse" %}
-                        <td scope="text"><a href="lien api">{{ ligne.choix }}</a></td> 
-                    {% else %}
-                        <td scope="text">
-                            {% if ligne.nombre %}
-                                 1d{{ ligne.nombre }}
-                            {% endif %}
-                             {{ ligne.choix }}</td> 
-                    {% endif %}
-                </tr> 
-            {% endfor %}
-        </table>
-        {# <p><a href="{{ path('app_random_tables_crud_edit', {'id': chosen_table.id}) }}">edit</a>this table</p> #}
-    </section>
+		<table class="{{chosen_table.Theme}}">
+			<tbody>
+				<tr>
+					<th scope="dice">{{chosen_table.Dice}}</th>
+					<th scope="text">{{chosen_table.TableName}}</th>
+				</tr>
+				{% for ligne in parsedJSON.table %}
+					<tr>
+						<td scope="dice">{{ ligne.case }}</td>
+						{% if ligne.categorie == "databse" %}
+							<td scope="text">
+								<a href="lien api">{{ ligne.choix }}</a>
+							</td>
+						{% else %}
+							<td scope="text">
+								{% if ligne.nombre %}
+									1d{{ ligne.nombre }}
+								{% endif %}
+								{{ ligne.choix }}</td>
+						{% endif %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+	{# <p><a href="{{ path('app_random_tables_crud_edit', {'id': chosen_table.id}) }}">edit</a>this table</p> #}
 {% endblock %}

@@ -30,25 +30,15 @@ class NewTableController extends AbstractController
     {
         $table = new RandomTables();
 
-        // // $content = new Content();
-        // // $content->setCase("CASE 01");
-        // // $content->setCategorie("CAT 01");
-        // // $content->setChoix("CHOIX 01");
-        // // $content->setNombre("nb 01");
-
-        // $table->getContents()->add($content);
         $user = $userRepository->findOneBy(['username' => $this->getUser()->getUserIdentifier()]);
         
-        // $form = $this->createForm(RandomTablesType::class, $table);
-
-
         $form = $this->createForm(NewTableType::class, $table);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $table->setDungeonMaster($user);
             $em->persist($table);
             $em->flush();
-            $this->addFlash('success', 'La recette a bien été créée');
+            $this->addFlash('success', 'La table a bien été créée');
             // return $this->redirectToRoute('admin.recipe.index');
         }
 

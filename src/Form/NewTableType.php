@@ -56,12 +56,12 @@ class NewTableType extends AbstractType
                         'the Dry and Unhospitable Lands' => 'desert',
                         'the Harsh and Cold Mountains of the North' => 'mountain',
                         'the Boundless Void of the Astral Plane' => 'astral',
-                        'the Liveliness and Warmth of the densily populated cities' => 'city',
+                        'the Liveliness and Warmth of the cities' => 'city',
                     ],
                 ],
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Créer la table'
+                'label' => 'Create Table'
             ])
         ;
     }
