@@ -15,7 +15,7 @@
 
 {% block body %}
 
-	<div id="logo"><img src="{{asset('images/Dice.png')}}" alt="illustration de d20"></div>
+	<div id="logo"><img src="{{asset('build/images/Dice.png')}}" alt="illustration de d20"></div>
 
 	<nav> 
         {% if app.user %}
@@ -49,28 +49,29 @@
 	<section id="topView">
 		<div>
 			<p style="visibility: hidden;" id="chosenDice">{{chosen_table.Dice}}</p>
-			<button id="diceRoll">roll the dice</button>
+			<button id="diceRoll">roll the dice</button> or 
 			<input type="text" placeholder="input a result">
+			<button>ok</button>
 		</div>
-		<img src="{{asset('images/Dice.png')}}" alt="illustration de d20">
+		<img src="{{asset('build/images/Dice.png')}}" alt="illustration de d20">
 	</section>
 
 	<section id="mainView" class="{{chosen_table.Theme}}">
 		{% set parsedJSON = chosen_table.Content | decode_json %}
 		{% if chosen_table.theme == "grassland" %}
-			<img id="elf" src="{{asset('images/dnd_elf.png')}}" alt="">
-			<img id="peryton" src="{{asset('images/dnd_peryton.png')}}" alt="">
+			<img id="elf" src="{{asset('build/images/dnd_elf.png')}}" alt="">
+			<img id="peryton" src="{{asset('build/images/dnd_peryton.png')}}" alt="">
 		{% elseif chosen_table.theme == "desert" %}
-			<img id="banelar" src="{{asset('images/dnd_banelar_naga.png')}}" alt="">
-			<img id="jackalwere" src="{{asset('images/dnd_jackalwere.png')}}" alt="">
+			<img id="banelar" src="{{asset('build/images/dnd_banelar_naga.png')}}" alt="">
+			<img id="jackalwere" src="{{asset('build/images/dnd_jackalwere.png')}}" alt="">
 		{% elseif chosen_table.theme == "mountain" %}
-			<img id="amethyst" src="{{asset('images/dnd_amethyst_dragon.png')}}" alt="">
-			<img id="dwarf" src="{{asset('images/dnd_dwarf.png')}}" alt="">
+			<img id="amethyst" src="{{asset('build/images/dnd_amethyst_dragon.png')}}" alt="">
+			<img id="dwarf" src="{{asset('build/images/dnd_dwarf.png')}}" alt="">
 		{% elseif chosen_table.theme == "astral" %}
-			<img id="intellect" src="{{asset('images/dnd_intellect_devourer.png')}}" alt="">
-			<img id="displacer" src="{{asset('images/dnd_displacer_beast.png')}}" alt="">
+			<img id="intellect" src="{{asset('build/images/dnd_intellect_devourer.png')}}" alt="">
+			<img id="displacer" src="{{asset('build/images/dnd_displacer_beast.png')}}" alt="">
 		{% elseif chosen_table.theme == "city" %}
-			<img id="vampire" src="{{asset('images/dnd_vampire.png')}}" alt="">
+			<img id="vampire" src="{{asset('build/images/dnd_vampire.png')}}" alt="">
 			<img id="cat" src="https://static.wikia.nocookie.net/forgottenrealms/images/3/32/Cat1.png" alt="">
 		{% endif %}
 
@@ -81,7 +82,7 @@
 					<th scope="text">{{chosen_table.TableName}}</th>
 				</tr>
 				{% for ligne in parsedJSON.table %}
-					<tr>
+					<tr id="ligne{{ ligne.case }}">
 						<td scope="dice">{{ ligne.case }}</td>
 						{% if ligne.categorie == "databse" %}
 							<td scope="text">

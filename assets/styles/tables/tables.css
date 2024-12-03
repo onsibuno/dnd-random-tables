@@ -49,9 +49,8 @@ body {
   color: white;
   overflow: hidden;
   background-image: url(../../images/Wood-Texture.jpg);
-    /* background-size: 60%; */
-    background-repeat: no-repeat;
-    background-position: center center;
+  background-repeat: no-repeat;
+  background-position: center center;
 
 }
 
@@ -285,7 +284,13 @@ caption {
   padding: 10px;
 }
 
-tr:hover:has(td) {
+/* tr:hover:has(td) {
+  -webkit-box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
+  -moz-box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
+  box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
+} */
+
+.selectedRow {
   -webkit-box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
   -moz-box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
   box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
