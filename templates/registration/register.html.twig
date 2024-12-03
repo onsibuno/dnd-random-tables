@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/register/register.css') }}">
+	{# <link rel="stylesheet" href="{{ asset('styles/register/register.css') }}"> #}
+	{{ encore_entry_link_tags('register') }}
 {% endblock %}
 
 {% block body %}

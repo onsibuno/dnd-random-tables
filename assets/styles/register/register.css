@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     display: grid;
     grid-template-columns: 400px 5fr;
     grid-template-rows: 1fr 1fr 3fr;
@@ -6,6 +7,10 @@ body {
     height: 100vh;
     color: white;
     overflow: hidden;
+    background-image: url(../../images/Wood-Texture.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+
 }
 
 #logo {
@@ -41,6 +46,7 @@ section {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
+    background-image: url(../../images/pages1.png);
     background-size: 60%;
     background-repeat: no-repeat;
     background-position: center top;

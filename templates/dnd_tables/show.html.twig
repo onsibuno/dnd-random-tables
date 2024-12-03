@@ -3,71 +3,59 @@
 {% block title %}Random Dnd Tables
 {% endblock %}
 
+
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/tables/tables.css') }}">
+	{# <link rel="stylesheet" href="{{ asset('styles/register/tables.css') }}"> #}
+	{{ encore_entry_link_tags('tables') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ encore_entry_script_tags('dice') }}
 {% endblock %}
 
 {% block body %}
 
-	{# 
-	    <style> 
-	        #mainView{
-	            background-image: url("{{asset(lienPage)}}");
-	        }
-	    </style> 
-	#}
-
 	<div id="logo"><img src="{{asset('images/Dice.png')}}" alt="illustration de d20"></div>
 
-	<nav>
-		{% if app.user %}
-			<div class="mb-3">
-				You are logged in as
-				{{ app.user.userIdentifier }},
-				<br>
-				<a href="{{ path('app_logout') }}">Logout</a>
-			</div>
-		{% endif %}
-		<ul>
-			<li>
-				General Tables :
-				<ul>
-					{% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == null) %}
-						<li>
-							<a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</li>
-			<br>
-			<li>
-				My Tables :
-				<ul>
-					{% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
-						<li>
-							<a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a>
-						</li>
-					{% else %}
-						<li>no table</li>
-					{% endfor %}
-				</ul>
-			</li>
-		</ul>
-		<button type="button" onclick="location.href = 'new/table'">
-			<p>New
-				<br>
-				Random Table</p>
-		</button>
-	</nav>
+	<nav> 
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as
+                {{ app.user.userIdentifier }}, <br>
+                <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+        <ul id="TablesList">
+            <li> Tables Génériques :
+                <ul>
+                    {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == null) %}
+                    <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <br>
+            <li> Mes Tables :
+                <ul id="myTables">
+                    {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
+                    <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
+                    {% else %}
+                        <li>aucune table</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+        <button type="button" onclick="location.href = 'new/table'"><p>nouvelle <br> table aléatoire</p></button>
+    </nav>
 	<section id="topView">
 		<div>
-			<button>roll the dice</button>
+			<p style="visibility: hidden;" id="chosenDice">{{chosen_table.Dice}}</p>
+			<button id="diceRoll">roll the dice</button>
 			<input type="text" placeholder="input a result">
 		</div>
 		<img src="{{asset('images/Dice.png')}}" alt="illustration de d20">
 	</section>
 
-	<section id="mainView">
+	<section id="mainView" class="{{chosen_table.Theme}}">
 		{% set parsedJSON = chosen_table.Content | decode_json %}
 		{% if chosen_table.theme == "grassland" %}
 			<img id="elf" src="{{asset('images/dnd_elf.png')}}" alt="">
@@ -76,17 +64,17 @@
 			<img id="banelar" src="{{asset('images/dnd_banelar_naga.png')}}" alt="">
 			<img id="jackalwere" src="{{asset('images/dnd_jackalwere.png')}}" alt="">
 		{% elseif chosen_table.theme == "mountain" %}
-			<img id="" src="" alt="">
-			<img id="" src="" alt="">
+			<img id="amethyst" src="{{asset('images/dnd_amethyst_dragon.png')}}" alt="">
+			<img id="dwarf" src="{{asset('images/dnd_dwarf.png')}}" alt="">
 		{% elseif chosen_table.theme == "astral" %}
 			<img id="intellect" src="{{asset('images/dnd_intellect_devourer.png')}}" alt="">
 			<img id="displacer" src="{{asset('images/dnd_displacer_beast.png')}}" alt="">
 		{% elseif chosen_table.theme == "city" %}
-			<img id="" src="" alt="">
-			<img id="" src="" alt="">
+			<img id="vampire" src="{{asset('images/dnd_vampire.png')}}" alt="">
+			<img id="cat" src="https://static.wikia.nocookie.net/forgottenrealms/images/3/32/Cat1.png" alt="">
 		{% endif %}
 
-		<table class="{{chosen_table.Theme}}">
+		<table>
 			<tbody>
 				<tr>
 					<th scope="dice">{{chosen_table.Dice}}</th>
@@ -104,12 +92,14 @@
 								{% if ligne.nombre %}
 									1d{{ ligne.nombre }}
 								{% endif %}
-								{{ ligne.choix }}</td>
+									<strong>
+										{{ ligne.choix | replace({'(' : "</strong><i>(", ')' : ")</i>"}) | raw }}	
+							</td>
 						{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
+		<a id="edit" href="{{ path('app_random_tables_crud_edit', {'id': chosen_table.id}) }}">edit</a>
 	</section>
-	{# <p><a href="{{ path('app_random_tables_crud_edit', {'id': chosen_table.id}) }}">edit</a>this table</p> #}
 {% endblock %}

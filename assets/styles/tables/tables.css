@@ -5,9 +5,7 @@
   --table-title-color: white;
   --table-content-color: black;
   --table-number-color: black;
-
 }
-
 .desert {
   --table-dark-color: #3D2415f3;
   --table-color: #9b5d36c5;
@@ -16,7 +14,6 @@
   --table-content-color: black;
   --table-number-color: black;
 }
-
 .mountain {
   --table-dark-color: #2e2e58;
   --table-color: #6e6d9e;
@@ -25,7 +22,6 @@
   --table-content-color: black;
   --table-number-color: black;
 }
-
 .astral {
   --table-dark-color: #3D152f;
   --table-color: #9b3678c5;
@@ -34,7 +30,6 @@
   --table-content-color: black;
   --table-number-color: black;
 }
-
 .city {
   --table-dark-color: #ff0035;
   --table-color: #ffaa00;
@@ -45,6 +40,7 @@
 }
 
 body {
+  margin: 0;
   display: grid;
   grid-template-columns: 400px 5fr;
   grid-template-rows: 1fr 3fr;
@@ -52,6 +48,11 @@ body {
   height: 100vh;
   color: white;
   overflow: hidden;
+  background-image: url(../../images/Wood-Texture.jpg);
+    /* background-size: 60%; */
+    background-repeat: no-repeat;
+    background-position: center center;
+
 }
 
 @media (max-width: 1200px) {
@@ -88,11 +89,28 @@ nav div {
   font-style: italic;
   color: rgb(26, 12, 12);
   opacity: 0.93;
+  transform: translateX(5px) translateY(15px);
   /* mix-blend-mode: hard-light; */
 }
 
 nav ul {
   list-style-type: none;
+  padding-left: 1em;
+}
+#TablesList{
+  max-height: 400px;
+  overflow: hidden;
+}
+
+#myTables {
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: visible;
+  scrollbar-width: thin;
+  scrollbar-color: #9b5d36c5 #d9ad91da;
+  scroll-behavior: smooth;
+  direction: rtl;
+  padding-left: 0.5em;
 }
 
 li a {
@@ -273,10 +291,10 @@ tr:hover:has(td) {
   box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
 }
 
-#intellect, #elf {
+#intellect, #elf, #cat {
   position: absolute;
-  left: 0;
-  bottom: 0px;
+  left: 10px;
+  bottom: 20px;
   width: 30%;
   max-width: 240px;
   transform: scaleX(-100%);
@@ -294,13 +312,20 @@ tr:hover:has(td) {
   filter: sepia(0.3);
 }
 
-#banelar{
+#banelar, #vampire, #dwarf{
   position: absolute;
   right: 0;
   bottom: -30px;
   pointer-events: none;
   mix-blend-mode: multiply;
   filter: sepia(0.3);
+}
+#dwarf{
+  right: -30px;
+  filter: sepia(0.3);
+}
+#vampire{
+  max-height: 435px;
 }
 #jackalwere{
   position: absolute;
@@ -309,4 +334,35 @@ tr:hover:has(td) {
   pointer-events: none;
   mix-blend-mode: multiply;
   filter: sepia(0.3);
+}
+
+#amethyst{
+  position: absolute;
+  left: -15px;
+  top: -15px;
+  width: 40%;
+  max-width: 320px;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  filter: sepia(0.3);
+}
+strong{
+  font-size: 1.1em;
+}
+i{
+  font-size: 0.9em;
+}
+#edit{
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  font-size: 1.8em;
+  text-shadow: 0px 0px 10px beige ;
+  color: black;
+}
+#edit:hover {
+  color: var(--table-dark-color);
+}
+#edit:active{
+  color: var(--table-light-color);
 }

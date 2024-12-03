@@ -14,15 +14,15 @@ class RandomTablesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('TableName')
-            ->add('Dice')
-            ->add('TableType')
-            ->add('Theme')
+            // ->add('TableName')
+            // ->add('Dice')
+            // ->add('TableType')
+            // ->add('Theme')
             ->add('Content')
-            ->add('DungeonMaster', EntityType::class, [
-                'class' => user::class,
-                'choice_label' => 'id',
-            ])
+            // ->add('DungeonMaster', EntityType::class, [
+            //     'class' => user::class,
+            //     'choice_label' => 'id',
+            // ])
         ;
     }
 

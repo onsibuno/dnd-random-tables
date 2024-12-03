@@ -6,6 +6,8 @@
 }
 
 body {
+    margin: 0;
+
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
     grid-template-rows: 1fr 2fr 1fr;
@@ -13,6 +15,10 @@ body {
     height: 100vh;
     color: black;
     overflow: hidden;
+    background-image: url(../../images/Wood-Texture.jpg);
+    /* background-size: 60%; */
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 section {
@@ -27,7 +33,7 @@ section {
     overflow: clip;
     background-color: beige;
     background-image: url(../../images/old-paper-texture.jpg);
-    background-size: 110%;
+    background-size: 130%;
     background-repeat: no-repeat;
     background-position: center center;
     border: 2mm double rgb(29, 14, 1);
@@ -126,8 +132,6 @@ input {
     width: 99%;
 }
 
-
-
 select {
     height: 5vh;
     font-size: 1em;
@@ -198,4 +202,27 @@ a{
 }
 a:hover{
     color: blueviolet;
+}
+
+#delete{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    right: -290px;
+    bottom: 32px;
+}
+#back {
+    position: absolute;
+    bottom: 32px;
+}
+
+#tableOptions{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
 }
