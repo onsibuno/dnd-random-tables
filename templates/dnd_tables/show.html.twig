@@ -10,48 +10,60 @@
 {% endblock %}
 
 {% block javascripts %}
-{{ encore_entry_script_tags('dice') }}
+	{{ encore_entry_script_tags('dice') }}
 {% endblock %}
 
 {% block body %}
 
 	<div id="logo"><img src="{{asset('build/images/Dice.png')}}" alt="illustration de d20"></div>
 
-	<nav> 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as
-                {{ app.user.userIdentifier }}, <br>
-                <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-        <ul id="TablesList">
-            <li> Tables Génériques :
-                <ul>
-                    {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == null) %}
-                    <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
-                    {% endfor %}
-                </ul>
-            </li>
-            <br>
-            <li> Mes Tables :
-                <ul id="myTables">
-                    {% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
-                    <li><a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a></li>
-                    {% else %}
-                        <li>aucune table</li>
-                    {% endfor %}
-                </ul>
-            </li>
-        </ul>
-        <button type="button" onclick="location.href = 'new/table'"><p>nouvelle <br> table aléatoire</p></button>
-    </nav>
+	<nav>
+		{% if app.user %}
+			<div class="mb-3">
+				You are logged in as
+				{{ app.user.userIdentifier }},
+				<br>
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+		{% endif %}
+		<ul id="TablesList">
+			<li>
+				Tables Génériques :
+				<ul>
+					{% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == null) %}
+						<li>
+							<a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+			<br>
+			<li>
+				Mes Tables :
+				<ul id="myTables">
+					{% for random_table in random_tables | filter((random_table) => random_table.DungeonMaster == app.user) %}
+						<li>
+							<a href="{{ path('app_dnd_table', {'id': random_table.id}) }}">{{ random_table.TableName }}</a>
+						</li>
+					{% else %}
+						<li>aucune table</li>
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+		<button type="button" onclick="location.href = 'new/table'">
+			<p>nouvelle
+				<br>
+				table aléatoire</p>
+		</button>
+	</nav>
 	<section id="topView">
 		<div>
 			<p style="visibility: hidden;" id="chosenDice">{{chosen_table.Dice}}</p>
-			<button id="diceRoll">roll the dice</button> or 
-			<input type="text" placeholder="input a result">
-			<button>ok</button>
+			<button id="diceRoll">roll the dice</button>
+			or
+			<input id="textRoll" type="text" placeholder="input a result">
+			<button id="textButton">ok</button>
 		</div>
 		<img src="{{asset('build/images/Dice.png')}}" alt="illustration de d20">
 	</section>
@@ -76,11 +88,13 @@
 		{% endif %}
 
 		<table>
-			<tbody>
+			<thead>
 				<tr>
 					<th scope="dice">{{chosen_table.Dice}}</th>
 					<th scope="text">{{chosen_table.TableName}}</th>
 				</tr>
+			</thead>
+			<tbody>
 				{% for ligne in parsedJSON.table %}
 					<tr id="ligne{{ ligne.case }}">
 						<td scope="dice">{{ ligne.case }}</td>
@@ -93,12 +107,13 @@
 								{% if ligne.nombre %}
 									1d{{ ligne.nombre }}
 								{% endif %}
-									<strong>
-										{{ ligne.choix | replace({'(' : "</strong><i>(", ')' : ")</i>"}) | raw }}	
-							</td>
-						{% endif %}
-					</tr>
-				{% endfor %}
+								<strong>
+									{{ ligne.choix | replace({'(' : "</strong><i>(", ')' : ")</i>"}) | raw }}
+								</td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
 			</tbody>
 		</table>
 		<a id="edit" href="{{ path('app_random_tables_crud_edit', {'id': chosen_table.id}) }}">edit</a>
