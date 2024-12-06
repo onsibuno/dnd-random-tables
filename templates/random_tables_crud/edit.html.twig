@@ -4,7 +4,8 @@
 	{{ random_table.TableName}}
 {% endblock %}
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/newtable/newtable.css') }}">
+{{ encore_entry_link_tags('newtable') }}
+	{# <link rel="stylesheet" href="{{ asset('styles/newtable/newtable.css') }}"> #}
 {% endblock %}
 
 {% block body %}

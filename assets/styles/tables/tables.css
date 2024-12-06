@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
 .grassland {
   --table-dark-color: #143e2af3;
   --table-color: #349e6be7;
@@ -6,6 +8,7 @@
   --table-content-color: black;
   --table-number-color: black;
 }
+
 .desert {
   --table-dark-color: #3D2415f3;
   --table-color: #9b5d36c5;
@@ -14,6 +17,7 @@
   --table-content-color: black;
   --table-number-color: black;
 }
+
 .mountain {
   --table-dark-color: #2e2e58;
   --table-color: #6e6d9e;
@@ -22,6 +26,7 @@
   --table-content-color: black;
   --table-number-color: black;
 }
+
 .astral {
   --table-dark-color: #3D152f;
   --table-color: #9b3678c5;
@@ -30,6 +35,7 @@
   --table-content-color: black;
   --table-number-color: black;
 }
+
 .city {
   --table-dark-color: #ff0035;
   --table-color: #ffaa00;
@@ -96,7 +102,8 @@ nav ul {
   list-style-type: none;
   padding-left: 1em;
 }
-#TablesList{
+
+#TablesList {
   max-height: 400px;
   overflow: hidden;
 }
@@ -163,6 +170,75 @@ nav button p {
   justify-content: center;
 }
 
+#topView div {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../../images/pages3.png);
+  background-repeat: no-repeat;
+    background-position: bottom center;
+}
+
+#diceRoll,
+#textButton {
+  height: 50px;
+  width: 170px;
+  text-align: center;
+  text-shadow: 0px 0px 6px black;
+  margin: 0vh 1vw 0vh 1vw;
+  font-family: "Jacques Francois", serif;
+  font-size: 1.2em;
+  color: beige;
+  background-color: rgb(39, 23, 23);
+  border: none;
+  border-radius: 15px;
+  box-shadow: inset 15px 15px 30px rgba(105, 78, 66, 0.7);
+  line-height: 0px;
+}
+
+#diceRoll:hover,
+#textButton:hover {
+  background-color: rgb(71, 44, 44);
+  box-shadow: inset 15px 15px 30px rgba(143, 108, 93, 0.7);
+}
+
+#textButton {
+  border-radius: 0px 15px 15px 0px;
+  margin-left: 0;
+  width: 90px;
+}
+
+#textRoll {
+  font-family: "Jacques Francois", serif;
+  height: 44px;
+  width: auto;
+  margin-left: 1vw;
+  padding: 0;
+  font-weight: 600;
+  font-size: 1.2em;
+  text-align: center;
+  box-shadow: inset 1px 1px 3px rgb(105, 78, 66);
+  background-color: rgba(245, 245, 220, 0.562);
+  border: solid rgb(105, 78, 66);
+  border-width: 3px 0px 3px 3px;
+}
+#textRoll:hover{
+  border: 3px ridge rgb(71, 51, 43);
+  border-width: 3px 0px 3px 3px;
+}
+#textRoll:focus {
+  outline: none;
+  border: ridge rgb(105, 78, 66);
+  border-width: 3px 0px 3px 3px;
+
+  box-shadow: inset 1px 1px 3px rgb(105, 78, 66), 1px 1px 6px rgba(29, 14, 1, 0.562);
+  transform: scale(0.99);
+}
+
 #mainView {
   position: relative;
   place-self: center;
@@ -199,13 +275,15 @@ nav button p {
   border: none;
   backdrop-filter: blur(3px);
 }
-thead{
+
+thead {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   mix-blend-mode: multiply;
   padding: 0em;
 }
+
 tbody {
   width: 100%;
   max-height: 450px;
@@ -221,13 +299,16 @@ tbody {
 tr {
   border: 2px solid transparent;
 }
-th,td {
+
+th,
+td {
   padding: 8px 10px;
   color: black;
   font-family: "Jacques Francois", serif;
   font-weight: 500;
   font-size: 1.3em;
 }
+
 th {
   position: sticky;
   top: 0;
@@ -237,6 +318,7 @@ th {
   font-weight: 600;
   font-size: 1.5em;
 }
+
 td[scope="dice"] {
   background-color: var(--table-light-color);
   mix-blend-mode: multiply;
@@ -244,29 +326,39 @@ td[scope="dice"] {
   max-width: 50px;
   color: var(--table-number-color);
 }
+
 th[scope="dice"] {
   width: 50px;
   max-width: 50px;
   color: var(--table-title-color);
 }
+
 td[scope='text'] {
   width: auto;
+  max-width: 900px;
+
   color: var(--table-content-color);
 }
+
 th[scope='text'] {
   width: 100%;
+  max-width: 900px;
   color: var(--table-title-color);
 }
+
 td {
   text-align: center;
 }
+
 tr:nth-of-type(odd) {
   /* background-color: #f7e6ad; */
   background-color: var(--table-color);
 }
+
 tr:nth-of-type(even) {
   background-color: rgba(219, 196, 146, 0.527);
 }
+
 table {
   border-collapse: collapse;
   border: 2px solid rgb(140 140 140);
@@ -286,7 +378,9 @@ caption {
   box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
 }
 
-#intellect, #elf, #cat {
+#intellect,
+#elf,
+#cat {
   position: absolute;
   left: 10px;
   bottom: 20px;
@@ -297,7 +391,9 @@ caption {
   mix-blend-mode: multiply;
   filter: sepia(0.3);
 }
-#displacer, #peryton {
+
+#displacer,
+#peryton {
   position: absolute;
   right: -30px;
   top: -30px;
@@ -305,7 +401,10 @@ caption {
   mix-blend-mode: multiply;
   filter: sepia(0.3);
 }
-#banelar, #vampire, #dwarf{
+
+#banelar,
+#vampire,
+#dwarf {
   position: absolute;
   right: 0;
   bottom: -30px;
@@ -313,14 +412,17 @@ caption {
   mix-blend-mode: multiply;
   filter: sepia(0.3);
 }
-#dwarf{
+
+#dwarf {
   right: -30px;
   filter: sepia(0.3);
 }
-#vampire{
+
+#vampire {
   max-height: 435px;
 }
-#jackalwere{
+
+#jackalwere {
   position: absolute;
   left: 10px;
   bottom: -30px;
@@ -328,7 +430,8 @@ caption {
   mix-blend-mode: multiply;
   filter: sepia(0.3);
 }
-#amethyst{
+
+#amethyst {
   position: absolute;
   left: -15px;
   top: -15px;
@@ -338,23 +441,28 @@ caption {
   mix-blend-mode: multiply;
   filter: sepia(0.3);
 }
-strong{
+
+strong {
   font-size: 1.1em;
 }
-i{
+
+i {
   font-size: 0.9em;
 }
-#edit{
+
+#edit {
   position: absolute;
   left: 20px;
   bottom: 10px;
   font-size: 1.8em;
-  text-shadow: 0px 0px 10px beige ;
+  text-shadow: 0px 0px 10px beige;
   color: black;
 }
+
 #edit:hover {
   color: var(--table-dark-color);
 }
-#edit:active{
+
+#edit:active {
   color: var(--table-light-color);
 }
