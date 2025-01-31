@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20241112105042 extends AbstractMigration
+final class Version20250119173540 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20241112105042 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE random_tables CHANGE content content LONGTEXT NOT NULL');
+        $this->addSql('ALTER TABLE random_tables CHANGE content content JSON DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE random_tables CHANGE content content TEXT NOT NULL');
+        $this->addSql('ALTER TABLE random_tables CHANGE content content JSON NOT NULL');
     }
 }

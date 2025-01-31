@@ -27,8 +27,8 @@
                 <td>{{ random_table.Theme }}</td>
                 <td>{{ random_table.Content ? random_table.Content|json_encode : '' }}</td>
                 <td>
-                    <a href="{{ path('app_random_tables_crud_show', {'id': random_table.id}) }}">show</a>
-                    <a href="{{ path('app_random_tables_crud_edit', {'id': random_table.id}) }}">edit</a>
+                    <a href="{{ path('app_random_tables_show', {'id': random_table.id}) }}">show</a>
+                    <a href="{{ path('app_random_tables_edit', {'id': random_table.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_random_tables_crud_new') }}">Create new</a>
+    <a href="{{ path('app_random_tables_new') }}">Create new</a>
 {% endblock %}

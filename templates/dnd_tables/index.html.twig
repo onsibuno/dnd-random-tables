@@ -40,12 +40,14 @@
         <button type="button" onclick="location.href = 'new/table'"><p>nouvelle <br> table aléatoire</p></button>
     </nav>
     <section id="topView">
-        <div>
-            <button>roll the dice</button>
-            <input type="text" placeholder="input a result">
-        </div>
-        <img src="{{asset('build/images/Dice.png')}}" alt="illustration de d20">
-    </section>
+		<div>
+			{# <p style="visibility: hidden;" id="d12">{{chosen_table.Dice}}</p> #}
+			<button id="diceRoll">roll the dice</button>
+			<p>or</p>
+			<input id="textRoll" type="text" placeholder="input a result">
+			<button id="textButton">ok</button>
+		</div>
+	</section>
 
         <section id="mainView">
             <img id="banelar" src="{{asset('build/images/dnd_banelar_naga.png')}}" alt="">

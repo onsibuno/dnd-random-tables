@@ -7,6 +7,7 @@
   --table-title-color: white;
   --table-content-color: black;
   --table-number-color: black;
+  --table-contrast-color: #9e3467;
 }
 
 .desert {
@@ -16,6 +17,8 @@
   --table-title-color: white;
   --table-content-color: black;
   --table-number-color: black;
+  --table-contrast-color: #36749b;
+
 }
 
 .mountain {
@@ -24,7 +27,8 @@
   --table-light-color: #b8b7CF;
   --table-title-color: white;
   --table-content-color: black;
-  --table-number-color: black;
+  --table-number-color: black;  
+  --table-contrast-color: darkred;
 }
 
 .astral {
@@ -34,6 +38,7 @@
   --table-title-color: white;
   --table-content-color: black;
   --table-number-color: black;
+  --table-contrast-color: #369b59;
 }
 
 .city {
@@ -43,6 +48,7 @@
   --table-title-color: black;
   --table-content-color: black;
   --table-number-color: white;
+  --table-contrast-color: #0055ff;
 }
 
 body {
@@ -180,7 +186,7 @@ nav button p {
   justify-content: center;
   background-image: url(../../images/pages3.png);
   background-repeat: no-repeat;
-    background-position: bottom center;
+  background-position: bottom center;
 }
 
 #diceRoll,
@@ -198,6 +204,7 @@ nav button p {
   border-radius: 15px;
   box-shadow: inset 15px 15px 30px rgba(105, 78, 66, 0.7);
   line-height: 0px;
+  transform: translateY(-45px);
 }
 
 #diceRoll:hover,
@@ -210,6 +217,12 @@ nav button p {
   border-radius: 0px 15px 15px 0px;
   margin-left: 0;
   width: 90px;
+}
+
+#topView div p {
+  transform: translateY(-45px);
+  font-size: 1.5em;
+  color: black;
 }
 
 #textRoll {
@@ -225,6 +238,8 @@ nav button p {
   background-color: rgba(245, 245, 220, 0.562);
   border: solid rgb(105, 78, 66);
   border-width: 3px 0px 3px 3px;
+  transform: translateY(-45px);
+
 }
 #textRoll:hover{
   border: 3px ridge rgb(71, 51, 43);
@@ -234,9 +249,7 @@ nav button p {
   outline: none;
   border: ridge rgb(105, 78, 66);
   border-width: 3px 0px 3px 3px;
-
   box-shadow: inset 1px 1px 3px rgb(105, 78, 66), 1px 1px 6px rgba(29, 14, 1, 0.562);
-  transform: scale(0.99);
 }
 
 #mainView {
@@ -373,9 +386,10 @@ caption {
 }
 
 .selectedRow {
-  -webkit-box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
-  -moz-box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
-  box-shadow: inset 0px 0px 0px 2px var(--table-dark-color);
+  -webkit-box-shadow: inset 0px 0px 3px 3px var(--table-contrast-color);
+  -moz-box-shadow: inset 0px 0px 3px 3px var(--table-contrast-color);
+  box-shadow: inset 0px 0px 3px 3px var(--table-contrast-color);
+
 }
 
 #intellect,

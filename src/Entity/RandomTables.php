@@ -1,8 +1,12 @@
 <?php
 namespace App\Entity;
 use App\Repository\RandomTablesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Persistence\ObjectManager;
+
 #[ORM\Entity(repositoryClass: RandomTablesRepository::class)]
 class RandomTables
 {
@@ -18,11 +22,22 @@ class RandomTables
     private ?string $TableType = null;
     #[ORM\Column(length: 50)]
     private ?string $Theme = null;
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $Content = null;
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $Content = [];
     #[ORM\ManyToOne(inversedBy: 'randomTables')]
     private ?User $DungeonMaster = null;
     public $table_type = "";
+
+    /**
+     * @var Collection<int, Table>
+     */
+    #[ORM\OneToMany(targetEntity: Table::class, mappedBy: 'RandomTable')]
+    private Collection $tables;
+
+    public function __construct()
+    {
+        $this->tables = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -88,11 +103,11 @@ class RandomTables
         $this->Theme = $Theme;
         return $this;
     }
-    public function getContent(): string
+    public function getContent(): ?array
     {     
         return $this->Content;
     }
-    public function setContent(string $Content): static
+    public function setContent(array $Content): static
     {
         $this->Content = $Content;
         return $this;
@@ -107,16 +122,61 @@ class RandomTables
         return $this;
     }
 
-    public function updateContentInput(string $value) {
-        $contentIput = '{ "table" : [';
+    public function updateContentInput(int $value) {
+        $contentIput = array("table"=>[]);
         for ($i = 1; $i <= $value; $i++) {
-            $contentIput = $contentIput . ($i != 1 ? ", " : "");
-            $data = '{"case":'.  $i .',"categorie": "plaintext","choix": "lorem ipsum dolor si amet","nombre": '.$i.'}';
-            // json_encode($data);
-            $contentIput = $contentIput . $data;
+
+            $data = array(
+                'case' => $i,
+                "categorie" => "plaintext",
+                "choix"=> "lorem ipsum dolor si amet",
+                "nombre"=> $i
+            );
+            array_push($contentIput["table"], $data);
         }
-        $contentIput = $contentIput . "] }";
+
+            // $table = new Table();
+            // $table->setLine($i);
+            // $table->setCategory("plaintext");
+            // $table->setChoice("lorem ipsum dolor si amet");
+            // $table->setAmount(6);
+            // $table->setRandomTable($data['content']);
 
         $this->Content = $contentIput;
+    }
+
+    /**
+     * @return Collection<int, Table>
+     */
+    public function getTables(): Collection
+    {
+        return $this->tables;
+    }
+
+    public function addTable(Table $table): static
+    {
+        if (!$this->tables->contains($table)) {
+            $this->tables->add($table);
+            $table->setRandomTable($this);
+        }
+
+        return $this;
+    }
+
+    public function TablePlaceholder(int $value)
+    {
+
+    }
+
+    public function removeTable(Table $table): static
+    {
+        if ($this->tables->removeElement($table)) {
+            // set the owning side to null (unless already changed)
+            if ($table->getRandomTable() === $this) {
+                $table->setRandomTable(null);
+            }
+        }
+
+        return $this;
     }
 }

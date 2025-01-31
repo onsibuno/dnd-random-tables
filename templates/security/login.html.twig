@@ -25,16 +25,16 @@
 
 			{% if app.user %}
 				<div class="mb-3">
-					You are logged in as
+					Vous êtes connecté en tant que
 					{{ app.user.userIdentifier }},
-					<a href="{{ path('app_logout') }}">Logout</a>
+					<a href="{{ path('app_logout') }}">se Déconnecter</a>
 				</div>
 			{% endif %}
 
 			<div class="parent">
 				<div class="enfant">
 					<div class="enfant">
-						<label for="inputUsername">Username</label>
+						<label for="inputUsername">Pseudonyme</label>
 						<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
 					</div>
 					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 317 88.98" class="ddbc-svg ">
@@ -45,7 +45,7 @@
 				</div>
 				<div class="enfant">
 					<div class="enfant">
-						<label for="inputPassword">Password</label>
+						<label for="inputPassword">Mot de Passe</label>
 						<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 					</div>
 					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 317 88.98" class="ddbc-svg ">
@@ -60,14 +60,14 @@
 			<div id="rememberMe" class="checkbox mb-3">
 				<label>
 					<input type="checkbox" name="_remember_me">
-					Remember me
+					Se souvenir de moi
 				</label>
 			</div>
 
 			<button class="btn btn-lg btn-primary" type="submit">
-				Sign in
+				se connecter
 			</button>
-			<p>click <a href="register" class="link">here</a> if you need to make an account</p>
+			<p>cliquer <a href="register" class="link">ici</a> pour créer un compte</p>
 		</form>
 	</section>
 {% endblock %}
