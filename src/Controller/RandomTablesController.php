@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\RandomTables;
+use App\Entity\Table;
 use App\Form\RandomTables1Type;
 use App\Repository\RandomTablesRepository;
+use App\Repository\TableRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,10 +52,15 @@ final class RandomTablesController extends AbstractController{
     }
 
     #[Route('/{id}/edit', name: 'app_random_tables_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, RandomTables $randomTable, EntityManagerInterface $entityManager): Response
+    public function edit(int $id, Request $request, RandomTables $randomTable,TableRepository $tableRepository, EntityManagerInterface $entityManager): Response
     {
+        if(!$tableRepository->findBy(['RandomTable' => $id])){
+            $randomTable->updateContentInput($entityManager);
+        };
+        
         $form = $this->createForm(RandomTables1Type::class, $randomTable);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();

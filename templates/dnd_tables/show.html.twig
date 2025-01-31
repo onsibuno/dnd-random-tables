@@ -56,6 +56,7 @@
 				table aléatoire</p>
 		</button>
 	</nav>
+	
 	<section id="topView">
 		<div>
 			<p style="visibility: hidden;" id="chosenDice">{{chosen_table.Dice}}</p>
@@ -83,7 +84,6 @@
 			<img id="vampire" src="{{asset('build/images/dnd_vampire.png')}}" alt="an illustration of a vampire">
 			<img id="cat" src="https://static.wikia.nocookie.net/forgottenrealms/images/3/32/Cat1.png" alt="an illustration of a cat">
 		{% endif %}
-
 		<table>
 			<thead>
 				<tr>
@@ -92,20 +92,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for ligne in chosen_table.Content.table %}
-					<tr id="ligne{{ ligne.case }}">
-						<td scope="dice">{{ ligne.case }}</td>
-						{% if ligne.categorie == "databse" %}
+				{% for ligne in chosen_table.tables %}
+					<tr id="ligne{{ ligne.line }}">
+						<td scope="dice">{{ ligne.line }}</td>
+						{% if ligne.category == "databse" %}
 							<td scope="text">
-								<a href="lien api">{{ ligne.choix }}</a>
+								<a href="lien api">{{ ligne.choice }}</a>
 							</td>
 						{% else %}
 							<td scope="text">
-								{% if ligne.nombre %}
-									1d{{ ligne.nombre }}
+								{% if ligne.amount %}
+									1d{{ ligne.amount }}
 								{% endif %}
 								<strong>
-									{{ ligne.choix | replace({'(' : "</strong><i>(", ')' : ")</i>"}) | raw }}
+									{{ ligne.choice | replace({'(' : "</strong><i>(", ')' : ")</i>"}) | raw }}
 								</td>
 							{% endif %}
 						</tr>

@@ -8,6 +8,7 @@ use App\Form\NewTableType;
 use App\Form\RandomTablesType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class NewTableController extends AbstractController
     #[Route('/new/table', name: 'app_new_table')]
     public function index(UserRepository $userRepository, Request $request, EntityManagerInterface $em): Response
     {
-        $table = new RandomTables();
+        $table = new RandomTables($em);
 
         $user = $userRepository->findOneBy(['username' => $this->getUser()->getUserIdentifier()]);
         
