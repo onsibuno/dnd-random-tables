@@ -7,11 +7,9 @@
 {% endblock %}
 {% block body %}
     <section>
-        <div>
             {# <h1>Edit RandomTables</h1> #}
             {# {{ include('random_tables/_delete_form.html.twig') }} #}
             {{ include('random_tables/_form.html.twig', {'button_label': 'Update'}) }}
-        </div>
         <a href="{{ path('app_random_tables_index') }}">back to list</a>
     </section>
 {% endblock %}

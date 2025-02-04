@@ -18,12 +18,8 @@ class TableContentType extends AbstractType
         $builder
             // ->add('Line')
             // ->add('category')
-            ->add('amount', IntegerType::class, [
-                'attr' => ['class'=>'amountInput']
-            ])
-            ->add('choice', TextareaType::class, [
-                'attr' => ['class' => 'choiceInput']
-            ])
+            ->add('amount')
+            ->add('choice')
         ;
     }
 
