@@ -90,8 +90,6 @@ img{
 } */
 form{
     max-height: 100%;
-}
-form{
     z-index: 2;
     /* place-self: center; */
     width: 90%;
@@ -99,24 +97,31 @@ form{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 
-form div div {
+/* section div{
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* margin: 2%; */
-}
-form div div div{
+} */
+/* form div div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+/* form div div div{
     display: flex;
     flex-direction: row;
-}
-form div div div div div{
+} */
+/* form div div div div div{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
+} */
 /*
 label {
     align-self: flex-start;
@@ -189,10 +194,13 @@ select:focus {
 } */
 
 button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
     text-shadow: 0px 0px 6px black;
     width: auto;
     padding: 2% 4%;
-    margin-top: 2em;
+    /* margin-top: 2em; */
     font-family: "Source Serif 4", serif;
     font-size: 1.2em;
     color: beige;
