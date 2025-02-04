@@ -16,6 +16,18 @@ class RandomTablesRepository extends ServiceEntityRepository
         parent::__construct($registry, RandomTables::class);
     }
 
+    public function findLastBy($value) 
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.DungeonMaster = :val')
+            ->setParameter('val', $value)
+            ->orderBy('e.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 //    /**
 //     * @return RandomTables[] Returns an array of RandomTables objects
 //     */
