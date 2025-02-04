@@ -14,10 +14,10 @@ class TableContentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Line')
-            ->add('category')
-            ->add('choice')
+            // ->add('Line')
+            // ->add('category')
             ->add('amount')
+            ->add('choice')
         ;
     }
 

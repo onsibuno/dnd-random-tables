@@ -6,11 +6,10 @@
 }
 
 body {
-    margin: 0;
-    
+    margin: 0;   
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 8fr 1fr;
     width: 100vw;
     height: 100vh;
     color: black;
@@ -30,7 +29,8 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: clip;
+    overflow-y: scroll;
+    overflow-x: hidden;
     background-color: beige;
     background-image: url(../../images/old-paper-texture.jpg);
     background-size: 130%;
@@ -80,18 +80,20 @@ img{
     }
 }
   
-section div{
+/* section div{
     width: 85%;
     place-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+} */
+form{
+    max-height: 100%;
 }
-
 form{
     z-index: 2;
-    place-self: center;
+    /* place-self: center; */
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -104,9 +106,18 @@ form div div {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 2%;
+    /* margin: 2%; */
 }
-
+form div div div{
+    display: flex;
+    flex-direction: row;
+}
+form div div div div div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/*
 label {
     align-self: flex-start;
     margin: 0px 4px 4px 0px;
@@ -114,8 +125,9 @@ label {
     text-shadow: 2px 5px 12px rgb(231, 215, 184); 
     z-index: 1;
     height: 20px;
-}
-input,
+} */
+
+/* input,
 select {
     text-align: center;
     width: 100%;
@@ -172,9 +184,9 @@ select:hover{
 select:focus {
     outline: none;
     box-shadow: inset 17px 17px 30px rgba(105, 78, 66, 0.7), 1px 1px 6px rgba(29, 14, 1, 0.562);
-    /* transform: scale(1.01); */
+    
 
-}
+} */
 
 button {
     text-shadow: 0px 0px 6px black;
