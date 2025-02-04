@@ -41,6 +41,7 @@ Encore
 
     .addEntry('bootstrap', './assets/bootstrap.js')
     .addEntry('newtable', './assets/styles/newtable/newtable.css')
+    .addEntry('edittable', './assets/styles/newtable/edittable.css')
     .addEntry('register', './assets/styles/register/register.css')
     .addEntry('tables', './assets/styles/tables/tables.css')
 

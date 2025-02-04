@@ -1,5 +1,14 @@
 {{ form_start(form) }}
-{# {{ form_widget(form) }} #}
-{{ form_row(form.tables) }} 
-<button class="btn">{{ button_label|default('Save') }}</button>
+    {# {{ form_widget(form) }} #}
+
+    <div class="tableParameters">
+        {{ form_row(form.TableName) }}
+        {{ form_row(form.Dice) }}
+        {{ form_row(form.TableType) }}
+        {{ form_row(form.Theme) }}
+    </div>
+    <div class="tableRows">
+        {{ form_row(form.tables) }}
+    </div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
