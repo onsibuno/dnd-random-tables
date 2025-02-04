@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit RandomTables{% endblock %}
+{% block title %}Edit {{random_table.tableName}}{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('newtable') }}
+{% endblock %}
 
 {% block body %}
-    <h1>Edit RandomTables</h1>
+    <section>
+        <div>
+            {{ include('random_tables/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
 
-    {{ include('random_tables/_form.html.twig', {'button_label': 'Update'}) }}
+        <a href="{{ path('app_random_tables_index') }}">back to list</a>
+    </section>
+    <h1>{{random_table.tableName}}</h1>
 
-    <a href="{{ path('app_random_tables_index') }}">back to list</a>
+
 
     {{ include('random_tables/_delete_form.html.twig') }}
 {% endblock %}

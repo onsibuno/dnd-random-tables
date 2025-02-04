@@ -6,6 +6,7 @@ use App\Entity\Content;
 use App\Entity\RandomTables;
 use App\Form\NewTableType;
 use App\Form\RandomTablesType;
+use App\Repository\RandomTablesRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -23,7 +24,7 @@ class NewTableController extends AbstractController
     // }
 
     #[Route('/new/table', name: 'app_new_table')]
-    public function index(UserRepository $userRepository, Request $request, EntityManagerInterface $em): Response
+    public function index(UserRepository $userRepository, Request $request, EntityManagerInterface $em, RandomTablesRepository $randomTablesRepository): Response
     {
         $table = new RandomTables($em);
 
@@ -36,7 +37,7 @@ class NewTableController extends AbstractController
             $em->persist($table);
             $em->flush();
             $this->addFlash('success', 'La table a bien été créée');
-            // return $this->redirectToRoute('admin.recipe.index');
+            return $this->redirectToRoute('app_random_tables_edit', array('id' => $randomTablesRepository->findLastBy($user)->getId()) );
         }
 
         return $this->render('new_table/index.html.twig', [

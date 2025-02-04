@@ -23,14 +23,6 @@ class RandomTables1Type extends AbstractType
             ->add('tables', CollectionType::class, [
                 'entry_type' => TableContentType::class,
             ])
-            // ->add('Content', CollectionType::class, [
-            //     'entry_type'=> TextType::class,
-            //     'keep_as_list' => true,
-            // ])
-//             ->add('DungeonMaster', EntityType::class, [
-//                 'class' => User::class,
-// 'choice_label' => 'id',
-//             ])
         ;
     }
 
