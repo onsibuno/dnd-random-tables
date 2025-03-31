@@ -7,3 +7,5 @@ But this project idea is to facilitate making a new one, have a way to highlight
 
 
 As part of my web development training I've decided to use **Symfony** for this projet.
+
+it is still lacking some features, especially security
